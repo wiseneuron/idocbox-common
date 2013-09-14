@@ -1,0 +1,123 @@
+# For JBoss: Avoid to setup Log4J outside $JBOSS_HOME/server/default/deploy/log4j.xml!
+# For all other servers: Comment out the Log4J listener in web.xml to activate Log4J.
+
+idocbox.root=.
+### set log levels:TRACE < DEBUG < INFO < WARN < ERROR < FATAL < LETHAL < EVER ###
+
+## TRACE
+#log4j.rootLogger = TRACE,stdout,T,D,I,W,E,F,L,EV
+
+## DEBUG
+#log4j.rootLogger = DEBUG,stdout,D,I,W,E,F,L,EV
+
+## INFO
+#log4j.rootLogger = INFO,stdout,I,W,E,F,L,EV
+
+## WARN
+#log4j.rootLogger = WARN,stdout,W,E,F,L,EV
+
+## ERROR
+log4j.rootLogger = ERROR,stdout,E,F,L,EV
+
+### Output infor to console###
+log4j.appender.stdout = org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.Target = System.out
+log4j.appender.stdout.layout = org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern =  %d{ABSOLUTE} %5p %c{1}:%L - %m%n
+
+### Save trace infor to proper file. ###
+log4j.appender.T = org.apache.log4j.RollingFileAppender
+log4j.appender.T.File =${idocbox.root}/log/trace.log
+log4j.appender.T.MaxFileSize=1024KB
+# Keep three backup files.
+log4j.appender.T.MaxBackupIndex=3
+log4j.appender.T.Append = true
+log4j.appender.T.Threshold = TRACE#com.idocbox.common.log.IdocboxLevel
+log4j.appender.T.layout = org.apache.log4j.PatternLayout
+log4j.appender.T.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss} - %p [%c:%L] %m%n
+
+### Output log ###
+log4j.appender.D = org.apache.log4j.RollingFileAppender
+log4j.appender.D.File = ${idocbox.root}/log/debug.log
+log4j.appender.D.MaxFileSize=1024KB
+# Keep three backup files.
+log4j.appender.D.MaxBackupIndex=3
+log4j.appender.D.Append = true
+log4j.appender.D.Threshold = DEBUG#com.idocbox.common.log.IdocboxLevel
+log4j.appender.D.layout = org.apache.log4j.PatternLayout
+log4j.appender.D.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss} - %p [%c:%L] %m%n
+
+### Save infor to proper file. ###
+log4j.appender.I = org.apache.log4j.RollingFileAppender
+log4j.appender.I.File =${idocbox.root}/log/info.log
+log4j.appender.I.MaxFileSize=1024KB
+# Keep three backup files.
+log4j.appender.I.MaxBackupIndex=3
+log4j.appender.I.Append = true
+log4j.appender.I.Threshold = INFO#com.idocbox.common.log.IdocboxLevel
+log4j.appender.I.layout = org.apache.log4j.PatternLayout
+log4j.appender.I.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss} - %p [%c:%L] %m%n
+
+### Save WARNING infor to proper file. ###
+log4j.appender.W = org.apache.log4j.RollingFileAppender
+log4j.appender.W.File =${idocbox.root}/log/warn.log
+log4j.appender.W.MaxFileSize=1024KB
+# Keep three backup files.
+log4j.appender.W.MaxBackupIndex=3
+log4j.appender.W.Append = true
+log4j.appender.W.Threshold = WARN#com.idocbox.common.log.IdocboxLevel
+log4j.appender.W.layout = org.apache.log4j.PatternLayout
+log4j.appender.W.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss} - %p [%c:%L] %m%n
+
+### Save error infor to proper file. ###
+log4j.appender.E = org.apache.log4j.DailyRollingFileAppender
+log4j.appender.E.File =${idocbox.root}/log/error.log
+#log4j.appender.E.MaxFileSize=1024KB
+# Keep three backup files.
+#log4j.appender.E.MaxBackupIndex=3
+log4j.appender.E.Append = true
+log4j.appender.E.Threshold = ERROR#com.idocbox.common.log.IdocboxLevel
+log4j.appender.E.layout = org.apache.log4j.PatternLayout
+log4j.appender.E.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss} - %p [%c:%L] %m%n
+
+### Save fatal infor to proper file. ###
+log4j.appender.F = org.apache.log4j.DailyRollingFileAppender
+log4j.appender.F.File =${idocbox.root}/log/fatal.log
+#log4j.appender.F.MaxFileSize=1024KB
+# Keep three backup files.
+#log4j.appender.F.MaxBackupIndex=3
+log4j.appender.F.Append = true
+log4j.appender.F.Threshold = FATAL#com.idocbox.common.log.IdocboxLevel
+log4j.appender.F.layout = org.apache.log4j.PatternLayout
+log4j.appender.F.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss} - %p [%c:%L] %m%n
+
+### Save LETHAL error infor to proper file. ###
+log4j.appender.L = org.apache.log4j.DailyRollingFileAppender
+log4j.appender.L.File =${idocbox.root}/log/lethal.log
+#log4j.appender.L.MaxFileSize=1024KB
+# Keep three backup files.
+#log4j.appender.L.MaxBackupIndex=3
+log4j.appender.L.Append = true
+log4j.appender.L.Threshold = LETHAL#com.idocbox.common.log.IdocboxLevel
+log4j.appender.L.layout = org.apache.log4j.PatternLayout
+log4j.appender.L.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss} - %p [%c:%L] %m%n
+
+### Save ever infor to proper file. ###
+log4j.appender.EV = org.apache.log4j.RollingFileAppender
+log4j.appender.EV.File =${idocbox.root}/log/ever.log
+log4j.appender.EV.MaxFileSize=1024KB
+# Keep three backup files.
+log4j.appender.EV.MaxBackupIndex=3
+log4j.appender.EV.Append = true
+log4j.appender.EV.Threshold = EVER#com.idocbox.common.log.IdocboxLevel
+log4j.appender.EV.layout = org.apache.log4j.PatternLayout
+log4j.appender.EV.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss} - %p [%c:%L] %m%n
+
+### ibatis log
+log4j.logger.com.ibatis=${log4j.rootLogger}
+log4j.logger.com.ibatis.common.jdbc.SimpleDataSource=${log4j.rootLogger}
+log4j.logger.com.ibatis.common.jdbc.ScriptRunner=${log4j.rootLogger}
+log4j.logger.com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate=${log4j.rootLogger}
+log4j.logger.java.sql.Connection=${log4j.rootLogger}
+log4j.logger.java.sql.Statement=${log4j.rootLogger}
+log4j.logger.java.sql.PreparedStatement=${log4j.rootLogger}
